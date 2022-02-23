@@ -3,18 +3,14 @@
 import yaml
 import random 
 import smtplib
-
 from email.message import EmailMessage
 
-shopping_list = []
-shopping_list_flat = []
-#final = []
 dinners = []
+shopping_list = []
 meals = yaml.load(open("meals.yaml"), Loader=yaml.BaseLoader)
-regular_items = ["cheese", "crackers", "milk", "spinach", "berries", "yoghurt", "nuts", "apples", "lemon", "lime"]
-regulars = "Don't forget the regulars!\n" + ", ".join(regular_items) + "\n\n"
-Kristoff = "Bonjour, Kristoff here. Here's your shopping plan for this week:\n"
+regulars = open("regulars.txt")
 recipients = ["luke.blakey@gmail.com", "hmjstath@gmail.com"]
+Kristoff_open = "Bonjour, Kristoff here. Here's your shopping plan for this week:\n"
 
 def create_schedule():
     while len(dinners) != 5:
@@ -24,25 +20,29 @@ def create_schedule():
     schedule = "\nMonday: " +  dinners[0] + "\nTuesday: " + dinners[1] + "\nWednesday: " + dinners[2] + "\nThursday: " + dinners[3] + "\nFriday: " + dinners[4]
     return schedule    
     
-def create_shopping_list():
+
+def create_shopping_list(dinners):
+    list_initial = []
     for meal in dinners:
-        shopping_list.append(meals[meal])
+        list_initial.append(meals[meal])
 
-    for meal in shopping_list:  
+    list_flat = []
+    for meal in list_initial:  
         for ingredient in meal:    
-            shopping_list_flat.append(ingredient)
+            list_flat.append(ingredient)
 
-    shopping_list_flat.sort()
-    shopping_list_string = ", ".join(shopping_list_flat) + "\n\n"
-    return shopping_list_string
-        
-#def agg():
-#    for i in shopping_list_flat:
-#        if shopping_list_flat.count(i) > 1:
-#            final.append(i + "(" + str(shopping_list_flat.count(i)) + ")")
-#            #shopping_list_flat.remove(i)
-#        final.append(i)
-#    final.sort()
+    list_dict = {}
+    for item in set(list_flat):
+        list_dict[item] = 0
+    for item in list_flat:
+        list_dict[item] += 1
+    for key in list_dict:
+        if list_dict[key] == 1:
+            shopping_list.append(key)
+        else:
+            shopping_list.append("{}({})".format(key, list_dict[key]))
+    return ", ".join(shopping_list) + "\n\n"
+
 
 def email(content, to):
     for address in to:
@@ -55,5 +55,6 @@ def email(content, to):
         mail.send_message(msg)
         mail.quit
 
-content = Kristoff + create_schedule() + "\n\nBuy these things:\n" + create_shopping_list() + regulars + "Kristoff out."
-email(content, recipients)
+
+content = Kristoff_open + create_schedule() + "\n\nBuy these things:\n" + create_shopping_list(dinners) + "Don't forget the regulars!\n" + regulars.read() + "\nKristoff out."
+email(content)
