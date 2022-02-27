@@ -44,8 +44,8 @@ def create_shopping_list(dinners):
     return ", ".join(shopping_list) + "\n\n"
 
 
-def email(content, to):
-    for address in to:
+def email(content):
+    for address in recipients:
         msg = EmailMessage()
         msg.set_content(content)
         msg["Subject"] = "Weekly Shop"
