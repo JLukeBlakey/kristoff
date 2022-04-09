@@ -1,18 +1,20 @@
 Chilli:
-  [ kidney_beans,  chopped_tomatoes,  mince,  spices,  peppers,  onions ]
+ [ kidney beans, chopped tomatoes, mince, spices, peppers, onions ]
 Curry:
-  [ chicken,  curry sauce,  peppers,  onions ]
+ [ chicken, curry sauce, peppers, onions ]
 Gammon:
-  [ gammon ]
+ [ gammon, potatoes, peppers ]
 Chicken Pasta:
-  [ pasta,  chicken_thighs,  sweet potato,  mushrooms ]
+ [ pasta, chicken, sweet potato, mushrooms, peppers ]
 Stir Fry:
-  [ beef,  carrots,  brocolli,  bok choy ]
+ [ beef, carrots, brocolli, bok choy ]
 Fajitas:
-  [ avacados,  tomatoes,  carrots,  peppers,  red onion,  white onion,  chicken ]
+ [ avacados, tomatoes, carrots, peppers, onions, chicken ]
 Chicken Kievs:
-  [ chicken kievs, potatoes ]
+ [ chicken kievs, potatoes ]
 Beef Stew:
-  [ cubed beef,  carrots,  onions,  mushrooms ]
+ [ cubed beef, carrots, onions, mushrooms ]
 Salmon:
-  [ salmon, potatoes, brocolli ]
+ [ salmon, potatoes, brocolli ]
+Chicken Fried Quinoa:
+ [ chicken, quinoa, tomatoes, peppers, spinach, carrots, onion ]
