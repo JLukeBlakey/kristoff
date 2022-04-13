@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import yaml
 import random 
@@ -49,7 +49,7 @@ def email(content):
         msg = EmailMessage()
         msg.set_content(content)
         msg["Subject"] = "Weekly Shop"
-        msg["From"] = "Kristoff"
+        msg["From"] = "kristoff"
         msg["To"] = address
         mail = smtplib.SMTP("localhost")
         mail.send_message(msg)
