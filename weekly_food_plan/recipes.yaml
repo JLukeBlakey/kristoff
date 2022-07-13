@@ -1,0 +1,61 @@
+---
+Chilli:
+  kidney beans: [1, tin]
+  chopped tomatoes: [1, tin]
+  mince: [500, g]
+  pepper: [1, whole]
+
+#    quantity: 1
+#    units: tin
+#  chopped tomatoes:
+#    quantity: 1
+#    units: tin
+#  mince: 
+#    quantity: 500
+#    units: g
+#  peppers: 
+#    quantity: 1
+#    units: whole
+#  onions:
+#    quantity: 1
+#    units: whole
+#  mushrooms:
+#    quantity: 1
+#    units: handful
+#Curry: 
+#  ingredients:
+#    chicken thigs:
+#      quantity: 500
+#      units: g
+#    peppers: 
+#      quantity: 1
+#      units: whole
+#    onions:
+#      quantity: 1
+#      units: whole
+#    curry sauce:
+#      quantity: 1
+#      units: jar
+#Gammon:
+#  ingredients:
+#    gammon: 
+#      quantity: 2
+#      units: sides
+#    potatoes:
+#      quantity: 2
+#      units: 
+#    peppers
+#Chicken Pasta:
+# [ pasta, chicken, sweet potato, mushrooms, peppers ]
+#Stir Fry:
+# [ beef, carrots, brocolli, bok choy ]
+#Fajitas:
+# [ avacados, tomatoes, carrots, peppers, onions, chicken ]
+#Chicken Kievs:
+# [ chicken kievs, potatoes ]
+#Beef Stew:
+# [ cubed beef, carrots, onions, mushrooms ]
+#Salmon:
+# [ salmon, potatoes, brocolli ]
+#Chicken Fried Quinoa:
+# [ chicken, quinoa, tomatoes, peppers, spinach, carrots, onion ]
