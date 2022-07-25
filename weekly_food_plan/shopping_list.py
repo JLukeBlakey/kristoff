@@ -15,10 +15,10 @@ kristoff_open = "Bonjour, Kristoff here. Here's your shopping plan for this week
 def create_meal_plan():
     while len(meals) != 5:
         random_meal = random.choice(list(recipes))
-        #if random_meal not in dinners:
-            #dinners.append(random_meal)
-        meals.append(random_meal)
-    schedule = "\nMonday: " +  meals[0] + "\nTuesday: " + meals[1] + "\nWednesday: " + meals[2] + "\nThursday: " + meals[3] + "\nFriday: " + meals[4]
+        if random_meal not in meals:
+            meals.append(random_meal)
+    schedule = "\nMonday: " +  meals[0] + "\nTuesday: " + meals[1] + "\nWednesday: " + meals[2] + "\nThursday: " + meals[3] + "\nFriday: " + meals[4] + "\n"
+
     return schedule    
     
 
@@ -31,16 +31,13 @@ def create_shopping_list(meals):
                 shopping_list[ingredient] = []
                 shopping_list[ingredient].append(quantity[0])
                 shopping_list[ingredient].append(quantity[1])
-    return shopping_list
+    
+    # convert to readable string
+    shopping_list_string = ""
+    for k, v in sorted(shopping_list.items()):
+        shopping_list_string = shopping_list_string + k + " (" + str(v[0]) + " " + v[1] + ")\n"
 
-  #  for k, v in shopping_list.items():
-  #      print(k, v)
-  #      
-  #      lists = (str(k) + ':' + str(v[0]) + str(v[1]))
-  #  
-  #  print(lists)
-
-    #return lists
+    return shopping_list_string
 
 
 def email(content):
@@ -55,33 +52,6 @@ def email(content):
         mail.quit
 
 
-#create_meal_plan()
-###print(meals['Chilli']['ingredients']['item'])
-##create_shopping_list(meals)
-#listss = create_shopping_list(meals)
-#€print(listss)
-#
-#for k, v in list.items():
-#    content=print(k, ':', v[0], v[1])
-#print(content)
-
-#dic={}
-#for k, v in recipes['Chilli']['ingredients'].items():
-# #   print(k)
-#  #  print(v)
-#    dic[k]=v['quantity']
-#print(dic)
-#for k, v in recipes['Chilli']['ingredients'].items():
-##    print(k)
-# #   print(v)
-#    if k in dic:
-#        dic[k]=dic[k] + v['quantity']
-#    else:
-#        dic[k]=v['quantity']
-#
-
-#print(dic)
-
-content = kristoff_open + create_meal_plan() + "\n\nBuy these things:\n" + str(create_shopping_list(meals)) + "Don't forget the regulars!\n" + regulars.read() + "\nKristoff out."
+content = kristoff_open + create_meal_plan() + "\nBuy these things:\n" + create_shopping_list(meals) + "\nDon't forget the regulars!\n" + regulars.read() + "\nKristoff out."
 print(content)
-#email(content)
+email(content)
