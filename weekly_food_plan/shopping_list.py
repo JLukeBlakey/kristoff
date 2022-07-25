@@ -1,47 +1,44 @@
 #!/usr/bin/env python3
 
 import yaml
-import random 
+import random
 import smtplib
 from email.message import EmailMessage
 
-dinners = []
-shopping_list = []
-meals = yaml.load(open("meals.yaml"), Loader=yaml.BaseLoader)
+meals = []
+shopping_list = {}
+recipes = yaml.safe_load(open("recipes.yaml"))
 regulars = open("regulars.txt")
 recipients = ["luke.blakey@gmail.com", "hmjstath@gmail.com"]
-Kristoff_open = "Bonjour, Kristoff here. Here's your shopping plan for this week:\n"
+kristoff_open = "Bonjour, Kristoff here. Here's your shopping plan for this week:\n"
 
-def create_schedule():
-    while len(dinners) != 5:
-        random_meal = random.choice(list(meals))
-        if random_meal not in dinners:
-            dinners.append(random_meal)
-    schedule = "\nMonday: " +  dinners[0] + "\nTuesday: " + dinners[1] + "\nWednesday: " + dinners[2] + "\nThursday: " + dinners[3] + "\nFriday: " + dinners[4]
-    return schedule    
-    
 
-def create_shopping_list(dinners):
-    list_initial = []
-    for meal in dinners:
-        list_initial.append(meals[meal])
+def create_meal_plan():
+    while len(meals) != 5:
+        random_meal = random.choice(list(recipes))
+        if random_meal not in meals:
+            meals.append(random_meal)
+    schedule = "\nMonday: " +  meals[0] + "\nTuesday: " + meals[1] + "\nWednesday: " + meals[2] + "\nThursday: " + meals[3] + "\nFriday: " + meals[4] + "\n"
 
-    list_flat = []
-    for meal in list_initial:  
-        for ingredient in meal:    
-            list_flat.append(ingredient)
+    return schedule
 
-    list_dict = {}
-    for item in set(list_flat):
-        list_dict[item] = 0
-    for item in list_flat:
-        list_dict[item] += 1
-    for key in list_dict:
-        if list_dict[key] == 1:
-            shopping_list.append(key)
-        else:
-            shopping_list.append("{}({})".format(key, list_dict[key]))
-    return ", ".join(shopping_list) + "\n\n"
+
+def create_shopping_list(meals):
+    for meal in meals:
+        for ingredient, quantity in recipes[meal].items():
+            if ingredient in shopping_list and shopping_list[ingredient][1] == quantity[1]:
+                shopping_list[ingredient][0] = shopping_list[ingredient][0] + quantity[0]
+            else:
+                shopping_list[ingredient] = []
+                shopping_list[ingredient].append(quantity[0])
+                shopping_list[ingredient].append(quantity[1])
+
+    # convert to readable string
+    shopping_list_string = ""
+    for k, v in sorted(shopping_list.items()):
+        shopping_list_string = shopping_list_string + k + " (" + str(v[0]) + " " + v[1] + ")\n"
+
+    return shopping_list_string
 
 
 def email(content):
@@ -56,5 +53,5 @@ def email(content):
         mail.quit
 
 
-content = Kristoff_open + create_schedule() + "\n\nBuy these things:\n" + create_shopping_list(dinners) + "Don't forget the regulars!\n" + regulars.read() + "\nKristoff out."
+content = kristoff_open + create_meal_plan() + "\nBuy these things:\n" + create_shopping_list(meals) + "\nDon't forget the regulars!\n" + regulars.read() + "\nKristoff out."
 email(content)
