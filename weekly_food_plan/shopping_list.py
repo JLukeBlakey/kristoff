@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import yaml
-import random 
+import random
 import smtplib
 from email.message import EmailMessage
 
@@ -9,8 +9,9 @@ meals = []
 shopping_list = {}
 recipes = yaml.safe_load(open("recipes.yaml"))
 regulars = open("regulars.txt")
-recipients = ["luke.blakey@gmail.com"]#, "hmjstath@gmail.com"]
+recipients = ["luke.blakey@gmail.com", "hmjstath@gmail.com"]
 kristoff_open = "Bonjour, Kristoff here. Here's your shopping plan for this week:\n"
+
 
 def create_meal_plan():
     while len(meals) != 5:
@@ -19,8 +20,8 @@ def create_meal_plan():
             meals.append(random_meal)
     schedule = "\nMonday: " +  meals[0] + "\nTuesday: " + meals[1] + "\nWednesday: " + meals[2] + "\nThursday: " + meals[3] + "\nFriday: " + meals[4] + "\n"
 
-    return schedule    
-    
+    return schedule
+
 
 def create_shopping_list(meals):
     for meal in meals:
@@ -31,7 +32,7 @@ def create_shopping_list(meals):
                 shopping_list[ingredient] = []
                 shopping_list[ingredient].append(quantity[0])
                 shopping_list[ingredient].append(quantity[1])
-    
+
     # convert to readable string
     shopping_list_string = ""
     for k, v in sorted(shopping_list.items()):
@@ -53,5 +54,4 @@ def email(content):
 
 
 content = kristoff_open + create_meal_plan() + "\nBuy these things:\n" + create_shopping_list(meals) + "\nDon't forget the regulars!\n" + regulars.read() + "\nKristoff out."
-print(content)
 email(content)
