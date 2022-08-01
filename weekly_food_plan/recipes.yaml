@@ -7,17 +7,17 @@ Chilli:
   onions: [1, whole]
   mushrooms: [50, g]
 Curry: 
-  chicken thigs: [500, g]
+  chicken thighs: [500, g]
   peppers: [1, whole]
   onions: [1, whole]
   curry sauce: [1, jar]
 Gammon:
-  gammon: [2, sides]
+  gammon: [2, steak]
   potatoes: [2, whole] 
   peppers: [1, whole]
 Chicken Pasta:
   pasta: [200, g]
-  chicken: [4, thigh fillets] 
+  chicken thighs: [500, g] 
   sweet potato: [2, whole]
   mushrooms: [50, g]
   peppers: [1, whole]
@@ -31,7 +31,7 @@ Fajitas:
   onions: [1, whole]
   chicken: [2, breast]
 Chicken Kievs:
-  chicken kievs: [2, whole]
+  chicken thighs: [500, g] 
   potatoes: [2, whole]
 Beef Stew:
   cubed beef: [500, g]
@@ -43,9 +43,15 @@ Salmon:
   potatoes: [2, whole]
   brocolli: [0.5, whole]
 Chicken Fried Quinoa:
-  chicken: [4, thigh fillets]
+  chicken thighs: [500, g] 
   quinoa: [100, g]
   peppers: [100, g]
   spinach: [100, g]
   carrots: [2, whole]
   onion: [1, whole]
+Falafel:
+  onion: [1, whole]
+  chickpeas: [1, tin]
+  parsley: [1, bunch]
+  tahini: [1, jar]
+  pitta bread: [1, pack]
