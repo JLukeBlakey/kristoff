@@ -11,7 +11,7 @@ meals = []
 shopping_list = {}
 recipes = yaml.safe_load(open("recipes.yaml"))
 regulars = open("regulars.txt")
-recipients = ["luke.blakey@gmail.com"]#, "hmjstath@gmail.com"]
+recipients = ["luke.blakey@gmail.com", "hmjstath@gmail.com"]
 kristoff_open = "Bonjour, Kristoff here. Here's your shopping plan for this week:\n"
 oddbox_data = []
 
@@ -76,6 +76,7 @@ def oddbox(food):
 
     return items
 
+
 def main():
     content = kristoff_open \
           + create_meal_plan() \
@@ -89,6 +90,6 @@ def main():
           + "\nKristoff out." \
 
     email(content)
-    print(content)
+
 
 main()
