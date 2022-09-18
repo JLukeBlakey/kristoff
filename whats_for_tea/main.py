@@ -62,7 +62,7 @@ class oddbox_html_parser(HTMLParser):
 
 
 def oddbox(food):
-    oddbox_html = requests.get("https://www.oddbox.co.uk/box-contents1")
+    oddbox_html = requests.get("https://www.oddbox.co.uk/box-contents2")
     parser = oddbox_html_parser()
     parser.feed(oddbox_html.text)
 
