@@ -49,7 +49,7 @@ def email(content):
         msg = EmailMessage()
         msg.set_content(content)
         msg["Subject"] = "Weekly Shop"
-        msg["From"] = "kristoff"
+        msg["From"] = "Kristoff"
         msg["To"] = address
         mail = smtplib.SMTP("localhost")
         mail.send_message(msg)
@@ -80,14 +80,13 @@ def oddbox(food):
 def main():
     content = kristoff_open \
           + create_meal_plan() \
-          + "\nBuy these things:\n" \
+          + "\nIngredients:\n" \
           + create_shopping_list(meals) \
           + "\nDon't forget the regulars!\n" \
           + regulars.read() \
           + "\nThis is what oddbox is delivering Thursday:\n" \
           + "Veg: {}\n".format(oddbox("veg")) \
-          + "Fruit: {}\n".format(oddbox("fruit")) \
-          + "\nKristoff out." \
+          + "\nKristoff out."
 
     email(content)
 
