@@ -1,0 +1,2 @@
+sudo nftadd rule ip filter INPUT tcp dport 5000 ip saddr 84.65.158.16 counter accept
+sudo nft add rule ip filter INPUT tcp dport 5000 counter drop
