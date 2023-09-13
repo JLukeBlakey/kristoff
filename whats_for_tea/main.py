@@ -89,6 +89,7 @@ def main():
           + "\nKristoff out."
 
     email(content)
+    requests.get('https://hc-ping.com/51054198-c694-4fb1-bac5-ca021f5baedb')
 
 
 main()
