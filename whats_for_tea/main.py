@@ -89,7 +89,7 @@ def main():
           + create_shopping_list(meals) \
           + "\nDon't forget the regulars!\n" \
           + regulars.read() \
-          + "\nThis is what oddbox is delivering " + os.getenv('DELIVERY_DAY') + "\n" \
+          + "\nThis is what oddbox is delivering " + os.getenv('ODDBOX_DELIVERY_DAY') + "\n" \
           + "Veg: {}\n".format(oddbox("veg")) \
           + "\nKristoff out."
 
