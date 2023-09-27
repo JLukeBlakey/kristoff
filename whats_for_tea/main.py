@@ -7,11 +7,16 @@ from email.message import EmailMessage
 import requests
 from html.parser import HTMLParser
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 meals = []
 shopping_list = {}
 recipes = yaml.safe_load(open("recipes.yaml"))
 regulars = open("regulars.txt")
-recipients = ["luke.blakey@gmail.com", "hmjstath@gmail.com"]
+recipients = os.getenv('RECIPIENT_EMAILS')
 kristoff_open = "Bonjour, Kristoff here. Here's your shopping plan for this week:\n"
 oddbox_data = []
 
@@ -84,7 +89,7 @@ def main():
           + create_shopping_list(meals) \
           + "\nDon't forget the regulars!\n" \
           + regulars.read() \
-          + "\nThis is what oddbox is delivering Thursday:\n" \
+          + "\nThis is what oddbox is delivering " + os.getenv('ODDBOX_DELIVERY_DAY') + "\n" \
           + "Veg: {}\n".format(oddbox("veg")) \
           + "\nKristoff out."
 
