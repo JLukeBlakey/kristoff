@@ -11,10 +11,6 @@ from dotenv import dotenv_values
 recipients = {
     **dotenv_values(".env.emails")
 }
-#for address in emails:
-#    print(emails[address])
-#print(emails)
-
 meals = []
 shopping_list = {}
 recipes = yaml.safe_load(open("recipes.yaml"))
@@ -55,8 +51,8 @@ def email(content):
         msg = EmailMessage()
         msg.set_content(content)
         msg["Subject"] = "Weekly Shop"
-        msg["From"] = "Kristoff"
-        msg["To"] = address
+        msg["From"] = "kristoff@cyclingpenguin.uk"
+        msg["To"] = recipients[address]
         mail = smtplib.SMTP("localhost")
         mail.send_message(msg)
         mail.quit
