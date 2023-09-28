@@ -6,17 +6,15 @@ import smtplib
 from email.message import EmailMessage
 import requests
 from html.parser import HTMLParser
+from dotenv import dotenv_values
 
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
+recipients = {
+    **dotenv_values(".env.emails")
+}
 meals = []
 shopping_list = {}
 recipes = yaml.safe_load(open("recipes.yaml"))
 regulars = open("regulars.txt")
-recipients = os.getenv('RECIPIENT_EMAILS')
 kristoff_open = "Bonjour, Kristoff here. Here's your shopping plan for this week:\n"
 oddbox_data = []
 
@@ -54,8 +52,8 @@ def email(content):
         msg = EmailMessage()
         msg.set_content(content)
         msg["Subject"] = "Weekly Shop"
-        msg["From"] = "Kristoff"
-        msg["To"] = address
+        msg["From"] = "kristoff@cyclingpenguin.uk"
+        msg["To"] = recipients[address]
         mail = smtplib.SMTP("localhost")
         mail.send_message(msg)
         mail.quit
@@ -89,7 +87,7 @@ def main():
           + create_shopping_list(meals) \
           + "\nDon't forget the regulars!\n" \
           + regulars.read() \
-          + "\nThis is what oddbox is delivering " + os.getenv('ODDBOX_DELIVERY_DAY') + "\n" \
+          + "\nThis is what oddbox is delivering this week:" + "\n" \
           + "Veg: {}\n".format(oddbox("veg")) \
           + "\nKristoff out."
 
