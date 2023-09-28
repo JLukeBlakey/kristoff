@@ -18,6 +18,7 @@ regulars = open("regulars.txt")
 kristoff_open = "Bonjour, Kristoff here. Here's your shopping plan for this week:\n"
 oddbox_data = []
 
+
 def create_meal_plan():
     while len(meals) != 5:
         random_meal = random.choice(list(recipes))
@@ -90,7 +91,6 @@ def main():
           + "Veg: {}\n".format(oddbox("veg")) \
           + "\nKristoff out."
 
-    print(content)
     email(content)
     requests.get('https://hc-ping.com/51054198-c694-4fb1-bac5-ca021f5baedb')
 
