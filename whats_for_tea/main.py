@@ -7,10 +7,14 @@ from email.message import EmailMessage
 import requests
 from html.parser import HTMLParser
 from dotenv import dotenv_values
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 recipients = {
     **dotenv_values(".env.emails")
 }
+hc_url = os.getenv('HC_URL')
 meals = []
 shopping_list = {}
 recipes = yaml.safe_load(open("recipes.yaml"))
@@ -92,7 +96,7 @@ def main():
           + "\nKristoff out."
 
     email(content)
-    requests.get('https://hc-ping.com/51054198-c694-4fb1-bac5-ca021f5baedb')
+    requests.get(hc_url)
 
 
 main()
