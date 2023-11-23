@@ -96,7 +96,9 @@ def main():
           + "\nKristoff out."
 
     email(content)
-    requests.get(hc_url)
+
+    if hc_url:
+        requests.get(hc_url)
 
 
 main()
