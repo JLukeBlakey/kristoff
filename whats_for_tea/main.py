@@ -15,6 +15,7 @@ recipients = {
     **dotenv_values(".env.emails")
 }
 hc_url = os.getenv('HC_URL')
+smtp_ip = os.getenv('SMTP_IP')
 meals = []
 shopping_list = {}
 recipes = yaml.safe_load(open("recipes.yaml"))
@@ -58,7 +59,7 @@ def email(content):
         msg["Subject"] = "Weekly Shop"
         msg["From"] = "kristoff@cyclingpenguin.uk"
         msg["To"] = recipients[address]
-        mail = smtplib.SMTP("localhost")
+        mail = smtplib.SMTP(smtp_ip)
         mail.send_message(msg)
         mail.quit
 
