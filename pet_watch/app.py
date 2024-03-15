@@ -1,16 +1,28 @@
 from flask import Flask, render_template, Response
-import cv2 as cv
 import imagezmq
-#from werkzeug.wrappers import request, Response
+import cv2
 
 app = Flask(__name__)
-image_hub = imagezmq.ImageHub()
+image_hub = imagezmq.ImageHub(open_port='tcp://*:5555')
+
 
 def gen_frames():
     while True:
-        rpi_name, image = image_hub.recv_image()
+        #camera = cv2.VideoCapture("http://192.168.50.104:4747/video")
+        #success, frame = camera.read()
+        #if not success:
+        #    break
+        #else:
+        rpi_name, frame = image_hub.recv_image()
+
         image_hub.send_reply(b'OK')
-        ret, buffer = cv.imencode('.jpg', image)
+
+
+        #cv2.imshow(rpi_name, image) # 1 window for each RPi
+        #cv2.waitKey(1)
+        #image_hub.send_reply(b'OK')       
+
+        ret, buffer = cv2.imencode('.jpg', frame)
         frame = buffer.tobytes()
         yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result

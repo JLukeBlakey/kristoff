@@ -1,0 +1,4 @@
+flask
+imagezmq
+imutils
+opencv-python

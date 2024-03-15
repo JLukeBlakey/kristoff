@@ -1,1 +1,0 @@
-sudo nft add rule ip filter INPUT tcp dport 5000 counter drop
