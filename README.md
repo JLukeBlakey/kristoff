@@ -1,2 +1,2 @@
 # Kristoff
-Open sourced home assistant
+Scripts and stuff to make my life easier.
